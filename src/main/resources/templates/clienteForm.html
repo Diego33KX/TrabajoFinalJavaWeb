@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="/layout/template :: header" >
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-12">
+			
+			<div class="card">
+				<div class="card-header" ></div>
+				<div class="card-body">
+				<h3 th:if="ERROR!=null" th:text="${ERROR}" style="color:red"></h3>
+
+					<form th:action="@{/clientes/insertar}" th:object="${cliente}" method="POST">
+						<div class="form-group">
+							<label for="nombre">Nombres</label> 
+							<input type="text" class="form-control" th:field="*{nombres}" name="nombres">
+						</div>
+						<div class="form-group">
+							<label for="apellidos">Apellidos</label>
+							<input type="text" class="form-control" th:field="*{apellidos}" name="apellidos">
+						</div>
+						<div class="form-group">
+							<label for="edad">Edad</label>
+							<input type="text" class="form-control" th:field="*{edad}" name="edad">
+						</div>
+						<div class="form-group">
+							<label for="sexo">Sexo</label>
+							<select class="form-control" th:field="*{sexo}" name="sexo">
+								<option value="">---Selecciona---</option>
+								<option value="M">Masculino</option>
+								<option value="F">Femenino</option>
+							</select>
+						</div>
+						<input type="submit" th:value="${btn}" class="btn btn-primary">
+					</form>
+				</div>
+			</div>
+		</div>		
+	</div>
+</div>
+</body>
+</html>

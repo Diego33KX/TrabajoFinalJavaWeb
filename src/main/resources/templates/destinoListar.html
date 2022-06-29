@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout/template :: header">
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			
+			<div class="card mt-5">
+				<div class="card-header"></div>
+				<div class="card-body">
+				<a class="btn btn-primary" href="/destinos/form">Registrar Destino</a>
+						<table class="table mt-3">
+							<thead class="thead-dark text-center">
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">Ciudad de Destino</th>
+									<th scope="col">Costo de Destino</th>
+									<th scope="col">Editar</th>
+									<th scope="col">Eliminar</th>
+								</tr>
+							</thead>
+							<tbody class="text-center">
+								<tr th:each="destino : ${destinos}">
+									<th scope="row" th:text="${destino.id}"></th>
+									<td th:text="${destino.ciudDest}"></td>
+									<td th:text="${destino.costDest}"></td>
+									<td><a class="btn btn-warning"
+										th:href="@{/destinos/form/} +${destino.id}" th:text="Editar"></a></td>
+									<td><a class="btn btn-danger"
+										th:href="@{/destinos/eliminar/} +${destino.id}" th:text="Eliminar" onclick="return confirm('Estas seguro de eliminar')"></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+			</div>
+		</div>		
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout/template :: header">
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-16">
+			
+			<div class="card mt-5">
+				<div class="card-header"></div>
+				<div class="card-body">
+				<a class="btn btn-primary" href="/reservas/form">Registrar Reserva</a>
+						<table class="table mt-3">
+							<thead class="thead-dark text-center">
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">ESTACION</th>
+									<th scope="col">DESTINO</th>
+									<th scope="col">PARTIDA</th>
+									<th scope="col">LLEGADA</th>
+									<th scope="col">N°BOLETOS</th>
+									<th scope="col">CLIENTE</th>
+									<th scope="col">P. BUS</th>
+									<th scope="col">TOTAL</th>
+									<th scope="col">EDITAR</th>
+									<th scope="col">ELIMINAR</th>
+								</tr>
+							</thead>
+							<tbody class="text-center">
+								<tr th:each="reserva : ${reservas}">
+									<th scope="row" th:text="${reserva.id}"></th>
+									<td th:text="${reserva.lugar_partida}"></td>
+									<td th:text="${reserva.lugar_destino}"></td>
+									<td th:text="${reserva.dia_partida}"></td>
+									<td th:text="${reserva.dia_llegada}"></td>
+									<td th:text="${reserva.boleto}"></td>
+									<td th:text="${reserva.nombre_cliente}"></td>
+									<td th:text="${reserva.placabus}"></td>
+									<td th:text="${reserva.total}"></td>
+									<td><a class="btn btn-warning"
+										th:href="@{/reservas/form/} +${reserva.id}" th:text="Editar"></a></td>
+									<td><a class="btn btn-danger"
+										th:href="@{/reservas/eliminar/} +${reserva.id}" th:text="Eliminar" onclick="return confirm('Estas seguro de eliminar')"></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+			</div>
+		</div>		
+	</div>
+</div>
+</body>
+</html>

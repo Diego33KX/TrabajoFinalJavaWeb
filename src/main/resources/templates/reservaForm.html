@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="/layout/template :: header" >
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-12">
+			
+			<div class="card">
+				<div class="card-header" ></div>
+				<div class="card-body">
+				<h3 th:if="ERROR!=null" th:text="${ERROR}" style="color:red"></h3>
+					<form th:action="@{/reservas/insertar}" th:object="${reserva}" method="POST">
+						<div class="form-group">
+							<label for="lugar_partida">Lugar de Partida</label> 
+							<input type="text" class="form-control" th:field="*{lugar_partida}" name="lugar_partida">
+						</div>
+						<div class="form-group">
+							<label for="lugar_destino">Lugar de Destino</label> 
+							<select class="form-control" th:field="*{lugar_destino}" name="lugar_destino">
+								<option value="">-Seleccionar--</option>
+								<option th:each="destino:${destinos}" th:value="${destino.ciudDest}" th:text="${destino.ciudDest}"></option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="dia_partida">Dia de Partida</label>
+							<input type="date" class="form-control" th:field="*{dia_partida}" name="dia_partida">
+						</div>
+						<div class="form-group">
+							<label for="dia_llegada">Dia de Llegada</label>
+							<input type="date" class="form-control" th:field="*{dia_llegada}" name="dia_llegada">
+						</div>
+						<div class="form-group">
+							<label for="boleto">Cantidad de Boletos</label>
+							<input type="text" class="form-control" th:field="*{boleto}" name="boleto">
+						</div>
+						<div class="form-group">
+							<label for="nombre_cliente">Nombre de cliente</label>
+							<select class="form-control" th:field="*{nombre_cliente}" name="nombre_cliente">
+								<option value="">--Seleccionar--</option>
+								<option th:each="cliente:${clientes}" th:value="${cliente.nombres}" th:text="${cliente.nombres}"></option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="placabus">Placa del Bus</label>
+							<select class="form-control" th:field="*{placabus}" name="placabus">
+								<option value="">--Seleccionar--</option>
+								<option th:each="bus:${bus}" th:value="${bus.placabus}" th:text="${bus.placabus}"></option>
+							</select>
+						</div>
+
+						<input type="submit" th:value="${btn}" class="btn btn-primary">
+					</form>
+				</div>
+			</div>
+		</div>		
+	</div>
+</div>
+</body>
+</html>
